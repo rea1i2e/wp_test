@@ -1,27 +1,41 @@
 <?php get_header(); ?>
-<br /><br /><br />
 
-<div class="l-inner">
-  <?php if (have_posts()) : ?>
-    <ul>
-      <?php while (have_posts()) : the_post(); ?>
-        <li><?php the_title(); ?></li>
-    <?php endwhile;
-    endif; ?>
-    </ul>
-</div>
-<br /><br /><br /><br />
-<div class="l-inner">
-<ul>
 <?php
-$myposts = get_posts_daily_random();
-foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
-	<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
-<?php endforeach;
-wp_reset_postdata(); ?>
-</ul>
+$slideItems = [
+  [
+    'imgSrc' => 'https://rea1i2e.github.io/sample-images/images/picture01.jpg',
+    'imgAlt' => '',
+  ],
+  [
+    'imgSrc' => 'https://rea1i2e.github.io/sample-images/images/picture02.jpg',
+    'imgAlt' => '',
+  ],
+  [
+    'imgSrc' => 'https://rea1i2e.github.io/sample-images/images/picture03.jpg',
+    'imgAlt' => '',
+  ],
+  [
+    'imgSrc' => 'https://rea1i2e.github.io/sample-images/images/picture04.jpg',
+    'imgAlt' => '',
+  ],
+];
+?>
+
+<div class="p-parts__carousel">
+  <div class="p-carousel">
+    <div class="p-carousel__wrapper js-carousel-slider">
+      <div class="p-carousel__images js-carousel-slider__images">
+        <?php foreach ($slideItems as $slideItem) : ?>
+          <div class="p-carousel__image">
+            <img src="<?php echo $slideItem['imgSrc']; ?>" alt="<?php echo $slideItem['imgAlt']; ?>">
+            <!-- <img src="<?php echo $slideItem['imgSrc']; ?>" alt="<?php echo $slideItem['imgAlt']; ?>"  loading="lazy"> -->
+          </div>
+        <?php endforeach; ?>
+      </div>
+    </div>
+  </div>
 </div>
 
+<img src="<?php echo esc_url(get_theme_file_uri('/assets/images/')); ?>" alt="" loading="lazy">
 
-<br /><br /><br />
 <?php get_footer(); ?>
