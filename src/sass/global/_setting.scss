@@ -1,0 +1,60 @@
+@use "sass:math";
+
+// インナー幅設定
+$inner-sp: 540;
+$inner-pc: 1120; // 左右160px
+// ※キャンパス幅ではなくインナーの幅を指す
+
+// 余白（rem）
+$padding-sp: 25;
+$padding-pc: 25;
+// ※PC時：デザインカンプの余白の幅ではない。PC時は通常25pxで大丈夫！
+
+
+/* フォントファミリー */
+$base-font-family: "";
+$second-font-family: "";
+// ※検証ツールでしっかり反映されているか確認する
+
+// フォントウェイト
+$regular: 300;
+$normal: 400;
+$bold: 700;
+
+////////////////////
+// 色の指定
+////////////////////
+
+//色指定（共通性のあるものは出来る限り指定すると良い）
+$black: #111;
+$white: #fff;
+
+
+////////////////////
+// メディアクエリとブレークポイントの設定
+////////////////////
+
+//ブレイクポイント
+$breakpoints: (
+  sm: 600,
+  md: 768,
+  lg: 1024,
+  xl: 1440,
+);
+
+
+//メディアクエリー
+$mediaquerys: (
+  sm: "screen and (min-width: #{map-get($breakpoints,'sm')}px)",
+  md: "screen and (min-width: #{map-get($breakpoints,'md')}px)",
+  lg: "screen and (min-width: #{map-get($breakpoints,'lg')}px)",
+  xl: "screen and (min-width: #{map-get($breakpoints,'xl')}px)",
+);
+
+// remへの計算式（16pxを基準としている。10pxを基準とする場合は16を10に変更する）
+
+@mixin mq($mediaquery: md) {
+  @media #{map-get($mediaquerys, $mediaquery)} {
+    @content;
+  }
+}
